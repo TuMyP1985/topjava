@@ -54,7 +54,7 @@ public class UserMealsUtil {
 
     public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         // TODO Implement by streams
-        //3.12Реализовать метод `UserMealsUtil.filteredByStreams` через Java 8 Stream API.
+        //3.Реализовать метод `UserMealsUtil.filteredByStreams` через Java 8 Stream API.
        // List<UserMealWithExcess> userList = meals.stream().filter(u->(u.getDateTime().toLocalTime().isAfter(startTime) &&
          //       u.getDateTime().toLocalTime().isBefore(endTime))).map(u->
            //     new UserMealWithExcess(u.getDateTime(),u.getDescription(),u.getCalories(), true)).collect(Collectors.toList());
