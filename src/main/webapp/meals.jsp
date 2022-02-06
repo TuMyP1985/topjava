@@ -22,12 +22,12 @@
     <th>Delete</th>
     <jsp:useBean id="meals" scope="request" type="java.util.List"/>
     <c:forEach var="entry" items="${meals}">
-        <tr style="color:${entry.excess ? 'red' : ''}">
+        <tr style="color:${entry.excess ? 'red' : 'green'}">
             <td><c:out value="${entry.dateTime.format(DateTimeFormatter.ofPattern('dd.MM.yyyy hh:mm'))}"/></td>
             <td><c:out value="${entry.description}"/></td>
             <td><c:out value="${entry.calories}"/></td>
-            <td><a href="mealsServlet?action=edit&mealId=<c:out value="${meal.mealId}"/>">Update</a></td>
-            <td><a href="mealsServlet?action=delete&mealId=<c:out value="${meal.mealId}"/>">Delete</a></td>
+            <td><a href="meals?action=edit&mealToId=<c:out value="${entry.id}"/>">Update</a></td>
+            <td><a href="meals?action=delete&mealToId=<c:out value="${entry.id}"/>">Delete</a></td>
 
         </tr>
     </c:forEach>

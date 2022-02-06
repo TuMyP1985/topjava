@@ -32,11 +32,12 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("redirect to meals");
+        request.setCharacterEncoding("UTF-8");
 
 //        request.getRequestDispatcher("/users.jsp").forward(request, response);
 //        response.sendRedirect("meals.jsp");
 
-        List<MealTo> mealToList = MealsUtil.findAll();
+//        List<MealTo> mealToList = MealsUtil.findAll();
 //        request.setAttribute("meals", mealToList);
 //        request.getRequestDispatcher("meals.jsp").forward(request, response);
 
@@ -44,10 +45,10 @@ public class MealServlet extends HttpServlet {
         String action = request.getParameter("action");
         action = action==null?"listMeals":action;
         if (action.equalsIgnoreCase("delete")){
-            int id = Integer.parseInt(request.getParameter("mealId"));
+            int id = Integer.parseInt(request.getParameter("mealToId"));
             dao.deleteMeal(id);
             forward = LIST_MEALS;
-            request.setAttribute("name", dao.getAllMeals());
+            request.setAttribute("meals", dao.getAllMeals());
         } else if (action.equalsIgnoreCase("edit")){
             forward = INSERT_OR_EDIT;
             int mealToId = Integer.parseInt(request.getParameter("mealToId"));
@@ -55,8 +56,8 @@ public class MealServlet extends HttpServlet {
             request.setAttribute("mealTo", mealTo);
         } else if (action.equalsIgnoreCase("listMeals")){
             forward = LIST_MEALS;
-            //request.setAttribute("meals", dao.getAllMeals());
-            request.setAttribute("meals", mealToList);
+            request.setAttribute("meals", dao.getAllMeals());
+            //request.setAttribute("meals", mealToList);
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -67,22 +68,23 @@ public class MealServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String mealToId = request.getParameter("mealToId");
+        if (mealToId.equalsIgnoreCase("cancel")){
+//            List<MealTo> mealToList = MealsUtil.findAll();
+//            request.setAttribute("meals", mealToList);
 
-        if (request.getParameter("bottName").equalsIgnoreCase("cancel")){
-            List<MealTo> mealToList = MealsUtil.findAll();
-
-            //request.setAttribute("meals", dao.getAllMeals());
-            request.setAttribute("meals", mealToList);
+            request.setAttribute("meals", dao.getAllMeals());
             RequestDispatcher view = request.getRequestDispatcher(LIST_MEALS);
             view.forward(request, response);
         }
 
         MealTo mealTo = new MealTo();
+        mealTo.setId(Integer.parseInt(mealToId));
         mealTo.setDescription(request.getParameter("description"));
         mealTo.setCalories(Integer.parseInt(request.getParameter("calories")));
         mealTo.setDateTime(LocalDateTime.parse(request.getParameter("dateTime"), formatter));
 
-        String mealToId = request.getParameter("mealToId");
         if(mealToId == null || mealToId.isEmpty())
             dao.addMeal(mealTo);
         else

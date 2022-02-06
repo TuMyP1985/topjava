@@ -20,13 +20,13 @@
 
 <form method="POST" action='meals' name="frmAddUser">
 <%--    DateTime : <input type="datetime" name="dateTime" value="<fmt:formatDate pattern="MM/dd/yyyy" value="${meal.dateTime}" />" /> <br />--%>
-    DateTime : <input type="datetime-local" name="dateTime" value="<c:out value="${meal.dateTime}" />" /> <br />
-    Description : <input type="text" name="description" value="<c:out value="${meal.description}" />" /> <br />
-    Calories : <input type="number" name="calories" value="<c:out value="${meal.calories}" />" /> <br />
+    DateTime : <input type="datetime-local" name="dateTime" value="<c:out value="${mealTo.dateTime}" />" /> <br />
+    Description : <input type="text" name="description" value="<c:out value="${mealTo.description}" />" /> <br />
+    Calories : <input type="number" name="calories" value="<c:out value="${mealTo.calories}" />" /> <br />
 
 
-    <button name="bottName" value="<c:out value="Save1" />" onclick="meals">Save</button>
-    <button name="bottName" value="<c:out value="Cancel" />" onclick="meals">Cancel</button>
+    <button name="mealToId" value="<c:out value="${mealTo.id}" />" onclick="meals">Save</button>
+    <button name="mealToId" value="<c:out value="Cancel" />" onclick="meals">Cancel</button>
 
 </form>
 </body>
