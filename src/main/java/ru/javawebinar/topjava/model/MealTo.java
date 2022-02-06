@@ -1,36 +1,25 @@
 package ru.javawebinar.topjava.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+//import javax.persistence.Entity;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MealTo {
-    private final LocalDateTime dateTime;
-
-    private final String description;
-
-    private final int calories;
-
-    private final boolean excess;
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
-    public boolean isExcess() {
-        return excess;
-    }
-
-    public String getDateFormatted() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(dateTime);
-    }
+    private int id;
+    private LocalDateTime dateTime;
+    private String description;
+    private int calories;
+    private boolean excess;
 
     public MealTo(LocalDateTime dateTime, String description, int calories, boolean excess) {
         this.dateTime = dateTime;
