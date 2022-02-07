@@ -67,6 +67,14 @@ public class MealsUtil {
     }
 
     private static MealTo createTo(Meal meal, boolean excess) {
-        return new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+        return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+    }
+
+    public static MealTo ConvertToMealTo(Meal meal){
+        return new MealTo(meal.getId(),meal.getDateTime(),meal.getDescription(),meal.getCalories(),false);
+    }
+
+    public static Meal ConvertToMeal(MealTo mealTo){
+        return new Meal(mealTo.getId(),mealTo.getDateTime(),mealTo.getDescription(),mealTo.getCalories());
     }
 }

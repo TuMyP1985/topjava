@@ -24,6 +24,7 @@ public class Meal {
     private String description;
 //    @Column (name = "calories")
     private int calories;
+//    private boolean excess;
 
     public LocalDate getDate() {
         return dateTime.toLocalDate();
