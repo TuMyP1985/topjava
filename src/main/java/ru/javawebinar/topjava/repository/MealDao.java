@@ -5,6 +5,7 @@ import ru.javawebinar.topjava.util.DbUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MealDao implements MealRepository{
@@ -15,7 +16,7 @@ public class MealDao implements MealRepository{
     }
 
     @Override
-    public void addMeal(Meal meal) {
+    public synchronized void addMeal(Meal meal) {
         try {
             PreparedStatement pr = connection
                     .prepareStatement("INSERT INTO Meals(dateTime, description, calories) values (?,?,?) ");
@@ -30,7 +31,7 @@ public class MealDao implements MealRepository{
     }
 
     @Override
-    public void deleteMeal(int mealId) {
+    public synchronized void deleteMeal(int mealId) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from Meals where id=?");
@@ -44,7 +45,7 @@ public class MealDao implements MealRepository{
     }
 
     @Override
-    public void updateMeal(Meal meal) {
+    public synchronized void updateMeal(Meal meal) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update Meals set dateTime=?, description=?, calories=?" +
@@ -64,7 +65,7 @@ public class MealDao implements MealRepository{
     }
 
     @Override
-    public Meal getMealById(int mealId) {
+    public synchronized Meal getMealById(int mealId) {
         Meal meal = new Meal();
         try {
             PreparedStatement preparedStatement = connection.
@@ -87,8 +88,8 @@ public class MealDao implements MealRepository{
     }
 
     @Override
-    public List<Meal> getAllMeals() {
-        List<Meal> list = new ArrayList<>();
+    public synchronized List<Meal> getAllMeals() {
+        List<Meal> list = Collections.synchronizedList(new ArrayList<>());
         try {
             Statement pr = connection.createStatement();
             ResultSet resultSet = pr.executeQuery("Select * from Meals");
