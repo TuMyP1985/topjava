@@ -25,9 +25,10 @@ public class InMemoryMealRepository implements MealRepository {
     private final AtomicInteger counter = new AtomicInteger(0);
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
-    {
-        MealsUtil.meals.forEach(n->save(n, 1));
+    public InMemoryMealRepository() {
+        MealsUtil.meals.forEach(n-> {n.setId(null);save(n, 1);});
     }
+
 
     @Override
     public Meal save(Meal meal, Integer userId) {
