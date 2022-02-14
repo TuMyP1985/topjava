@@ -1,5 +1,8 @@
 package ru.javawebinar.topjava.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public abstract class AbstractBaseEntity {
     protected Integer id;
 

@@ -15,7 +15,7 @@ public class DateTimeUtil {
     public static  <T extends Comparable<? super T>> boolean isBetweenHalfOpen(T lt, T start, T end) {
 
         return (start==null ||  lt.compareTo(start) >= 0) &&
-                (end==null || lt.compareTo(end) <= 0);
+                (end==null || lt.getClass().equals(LocalDate.class)&&lt.compareTo(end) <= 0 || lt.compareTo(end) < 0 );
     }
 
     public static String toString(LocalDateTime ldt) {
