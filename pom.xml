@@ -181,12 +181,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!--        delete late It's my-->
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -232,6 +227,17 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
+
+        <profile>
+            <id>jdbc</id>
+        </profile>
+        <profile>
+            <id>jpa</id>
+        </profile>
+        <profile>
+            <id>datajpa</id>
+        </profile>
+
     </profiles>
 
     <dependencyManagement>
