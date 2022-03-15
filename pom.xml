@@ -211,7 +211,7 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <artifactId>spring-webmvc</artifactId>
         </dependency>
 
         <!--Test-->
@@ -242,7 +242,7 @@
                 <dependency>
                     <groupId>org.hsqldb</groupId>
                     <artifactId>hsqldb</artifactId>
-                    <version>2.6.1</version>
+                    <version>2.3.4</version>
                 </dependency>
             </dependencies>
         </profile>
