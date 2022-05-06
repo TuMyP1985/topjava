@@ -64,22 +64,6 @@ class ProfileRestControllerTest extends AbstractControllerTest {
         USER_MATCHER.assertMatch(userService.get(newId), newUser);
     }
 
-    @Test
-    void register() throws Exception {
-        UserTo newTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword", 1500);
-        User newUser = UserUtil.createNewFromTo(newTo);
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(newTo)))
-                .andDo(print())
-                .andExpect(status().isCreated());
-
-        User created = USER_MATCHER.readFromJson(action);
-        int newId = created.id();
-        newUser.setId(newId);
-        USER_MATCHER.assertMatch(created, newUser);
-        USER_MATCHER.assertMatch(userService.get(newId), newUser);
-    }
 
     @Test
     void update() throws Exception {
