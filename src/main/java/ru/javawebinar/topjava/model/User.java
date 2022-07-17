@@ -80,6 +80,7 @@ public class User extends AbstractNamedEntity {
         this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);
+//        tst
     }
 
     public String getEmail() {
